@@ -1,8 +1,8 @@
 initialLoc = [{
-        title: 'Daniel',
+        title: 'Gotham Bar and Grill',
         location: {
-            lat: 40.7667738,
-            lng: -73.9697909
+            lat: 40.734207,
+            lng: -73.993699
         }
     },
     {
@@ -20,17 +20,17 @@ initialLoc = [{
         }
     },
     {
-        title: 'Blue Hill',
+        title: 'Aquagrill',
         location: {
-            lat: 40.7320465,
-            lng: -74.0018572
+            lat: 40.7253464,
+            lng: -74.0038696
         }
     },
     {
-        title: 'Eleven Madison Park',
+        title: 'Bouley',
         location: {
-            lat: 40.741726,
-            lng: -73.9893617
+            lat: 40.716969,
+            lng: -74.008958
         }
     },
     {
@@ -55,7 +55,32 @@ var Location = function(data) {
     // locations are visible by default
     this.visible = ko.observable(true);
 
-    this.largeInfowindow = new google.maps.InfoWindow();
+    this.largeInfowindow = new google.maps.InfoWindow({maxWidth: 265});
+
+    // Wikipedia AJAX request goes here
+    var wikiUrl = 'http://en.Wikipedia.org/w/api.php?action=opensearch&search=' + self.title + '&format=json&callback=wikiCallback'
+
+    var wikiRequestTimeout = setTimeout(function() {
+        $wikiElem.text("failed to get wikipedia resources");
+    }, 8000);
+
+    $.ajax({
+        url: wikiUrl,
+        dataType: "jsonp",
+    }).done(function(response) {
+        // fetching response and storing relevant data in variables
+        self.article = response[2][0];
+        self.alink = response[3][0];
+
+        self.contentString = '<div class="info-window-content"><div class="title"><b>' + self.title + "</b></div>" +
+            '<div class="content">' + self.article + "</div>" +
+            '<div class="content"><a href="' + self.alink + '">' + self.alink + "</a></div>";
+
+        // setting content of infoWindow
+        self.largeInfowindow.setContent(self.contentString);
+
+        clearTimeout(wikiRequestTimeout);
+    });
 
     // new marker for location
     this.marker = new google.maps.Marker({
@@ -65,6 +90,7 @@ var Location = function(data) {
         animation: google.maps.Animation.DROP
     });
 
+    // animation and opens infowindow on click
     this.marker.addListener('click', function() {
         self.togglebounce(this);
         self.populateInfoWindow(this, self.largeInfowindow);
@@ -92,8 +118,6 @@ var Location = function(data) {
 
     this.populateInfoWindow = function(marker, infowindow) {
         if (infowindow.marker != marker) {
-            // Clear the infowindow content to give the streetview time to load.
-            infowindow.setContent('');
             infowindow.marker = marker;
             // Make sure the marker property is cleared if the infowindow is closed.
             infowindow.addListener('closeclick', function() {
@@ -127,8 +151,6 @@ var ViewModel = function() {
     // filtering list
     this.filteredList = ko.computed(function() {
         var filter = self.search().toLowerCase();
-        console.log(filter);
-        console.log('bla')
         if (!filter) {
             self.locList().forEach(function(locationItem) {
                 locationItem.visible(true);
@@ -152,6 +174,7 @@ function initMap() {
         center: { lat: 40.7413549, lng: -73.9980244 },
         zoom: 13
     });
+
 };
 
 function startApp() {
