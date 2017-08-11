@@ -1,56 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <!-- load own styles -->
-  <link rel="stylesheet" href="css/styles.css">
-  <title>Neighborhood Map</title>
-</head>
-<body>
-  <div class="container">
 
-    <div class="row">
-      <div class="col-md-12">
-        <a href="#">
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- load own styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Neighborhood Map</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="#">
           <span class="glyphicon glyphicon-menu-hamburger"></span>
         </a>
-      </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <input class="form-control mr-md-2" type="text" placeholder="Search" data-bind="textInput: search, valueUpdate: 'afterkeydown'">
+                <h3>Key locations</h3>
+                <ul data-bind="foreach: filteredList">
+                    <li><a data-bind="text: title, click: animate" href="#"></a></li>
+                </ul>
+            </div>
+            <div class="col-md-8">
+                <div id="map"></div>
+            </div>
+        </div>
     </div>
-
-    <div class="row">
-      <div class="col-md-4">
-
-        <nav class="navbar navbar-light bg-faded">
-          <form class="form-inline">
-            <input class="form-control mr-md-2" type="text" placeholder="Search">
-          </form>
-        </nav>
-
-        <h3>Key locations</h3>
-
-        <ul data-bind="foreach: locList">
-          <li><a data-bind="text: title" href="#"></a></li>
-        </ul>
-
-      </div>
-
-      <div class="col-md-8">
-        <div id="map"></div>
-      </div>
-    </div>
-
-  </div>
-
-  <script src="js/lib/knockout-3.2.0.js"></script>
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="js/app.js"></script>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDebhX4sUJTzaTzpqz33FPKfNIH_-6f7BU&v=3&callback=startApp">
-</script>
-
+    <script src="js/lib/knockout-3.2.0.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDebhX4sUJTzaTzpqz33FPKfNIH_-6f7BU&v=3&callback=startApp">
+    </script>
 </body>
+
 </html>
