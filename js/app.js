@@ -177,6 +177,10 @@ function initMap() {
 
 };
 
+function errorHandling() {
+    alert("Google Maps has failed to load. Please try again later.");
+}
+
 function startApp() {
     initMap();
     ko.applyBindings(new ViewModel());

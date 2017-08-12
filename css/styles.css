@@ -5,7 +5,39 @@
 html, body {
   font-family: Arial, sans-serif;
   height: 100%;
+  background: #fff091;
 }
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar {
+    background: #d8c96a;
+/*    height: 100vh;*/
+}
+
+#searchInput {
+    margin-top: 10px;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
 
 #map {
   margin: 0;
@@ -13,7 +45,4 @@ html, body {
   height: 100vh;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-}
+

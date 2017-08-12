@@ -11,19 +11,17 @@
 
 <body>
     <div class="container">
-        <div class="row">
+<!--         <div class="row">
             <div class="col-md-12">
-                <a href="#">
           <span class="glyphicon glyphicon-menu-hamburger"></span>
-        </a>
             </div>
-        </div>
+        </div> -->
         <div class="row">
-            <div class="col-md-4">
-                <input class="form-control mr-md-2" type="text" placeholder="Search" data-bind="textInput: search, valueUpdate: 'afterkeydown'">
+            <div id="sidebar" class="col-md-4">
+                <input id="searchInput" class="form-control mr-md-2" type="text" placeholder="Search" data-bind="textInput: search, valueUpdate: 'afterkeydown'">
                 <h3>Key locations</h3>
-                <ul data-bind="foreach: filteredList">
-                    <li><a data-bind="text: title, click: animate" href="#"></a></li>
+                <ul class="list-group" data-bind="foreach: filteredList">
+                    <li class="list-group-item"><a data-bind="text: title, click: animate" href="#"></a></li>
                 </ul>
             </div>
             <div class="col-md-8">
@@ -37,7 +35,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/app.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDebhX4sUJTzaTzpqz33FPKfNIH_-6f7BU&v=3&callback=startApp">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDebhX4sUJTzaTzpqz33FPKfNIH_-6f7BU&v=3&callback=startApp" onerror="errorHandling()">
     </script>
 </body>
 
